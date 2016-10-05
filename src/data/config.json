@@ -1,0 +1,31 @@
+{
+    "storage": {
+        "input": {
+            "tables": [],
+            "files": []
+        },
+        "output": {
+            "tables": [
+                {
+                    "source": "out_zbozi_stats_pd.csv",
+                    "destination": "in.c-scrapers.docker_test",
+                    "incremental": false,
+                    "primary_key": [],
+                    "delete_where_values": [],
+                    "delete_where_operator": "eq",
+                    "delimiter": ",",
+                    "enclosure": "\"",
+                    "escaped_by": ""
+                }
+            ],
+            "files": []
+        }
+    },
+    "parameters": {
+        "Date_preset": "-Yesterday",
+        "Date_from": "2016-03-27",
+        "Date_to": "2016-04-02",
+        "Mode": "summary"
+    },
+    "image_parameters": []
+}

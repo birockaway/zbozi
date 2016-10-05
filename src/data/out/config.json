@@ -1,0 +1,9 @@
+{
+  "parameters" : 
+  {
+  "Date_preset": "-Yesterday",
+  "Date_from": "2016-03-27",
+  "Date_to": "2016-04-02",
+  "Mode": "summary"
+  }
+}
