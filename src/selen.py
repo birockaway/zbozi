@@ -290,6 +290,6 @@ try:
     #test print
     cr = csv.reader(open(save_path+"out_zbozi_stats_"+sample_shortcut+".csv","rb"))
     for row in cr:    
-        print row
+        print(row)
 except IOError:
     print("Sample of "+parameters.get('Accounts')[0].get('Shop_name')[sample_index]+" was not avaliable...")
