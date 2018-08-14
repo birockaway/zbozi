@@ -171,7 +171,7 @@ def scrape(driver,web_id,shop_shortcut,shop_name,date_from,date_to):
 
         #najde link na ztazeni .csv statistik
         for a in driver.find_elements_by_xpath("//table[@id='statisticsContainer']//tr[3]//td[5]/a"):
-    	   link_stats=a.get_attribute('href')
+            link_stats=a.get_attribute('href')
 
         #proklikne link_stats na stazeni .csv se statistikama
         driver.get(link_stats)
