@@ -184,7 +184,7 @@ def scrape(driver,web_id,shop_shortcut,shop_name,date_from,date_to):
         for filename in os.listdir(save_path):
             if filename.startswith("statistics"):
                 os.rename(filename,"zbozi_stats_"+shop_shortcut+".csv")
-        print "Statistics for shop "+shop_name+" has been succesfuly processed."
+        print("Statistics for shop "+shop_name+" has been succesfuly processed.")
     except:
         print("(!!!) Statistics for shop "+shop_name+" NOT FOUND on the Zbozi.cz web.")
         with open(save_path+"out_zbozi_stats_"+shop_shortcut+".csv", 'w') as csvoutput:
