@@ -11,15 +11,15 @@ from datetime import date, timedelta
 import csv
 from pyvirtualdisplay import Display
 
-print "Component started."
-print "Python libraries loaded."
+print("Component started.")
+print("Python libraries loaded.")
 
 display = Display(visible=0, size=(1024, 768))
 display.start()
 
-print "Current Working Directory is ... "+os.getcwd()
+print("Current Working Directory is ... "+os.getcwd())
 
-print "Config taken from ... "+os.path.abspath(os.path.join(os.getcwd(), os.pardir))+'data/'
+print("Config taken from ... "+os.path.abspath(os.path.join(os.getcwd(), os.pardir))+'data/')
 
 # initialize KBC configuration 
 cfg = docker.Config(os.path.abspath(os.path.join(os.getcwd(), os.pardir))+'data/')
@@ -36,7 +36,7 @@ scrape_date = str(time.strftime("%Y-%m-%d"))
 mode = parameters.get('Mode')
 #mode = 'summary'
 #mode = 'by_category'
-print "Mode is ... "+mode
+print("Mode is ... "+mode)
 
 ### DEFINITION OF PARAMETERS ###
 #user input - cesta k souboru, kam se maji statistiky ukladat
@@ -163,7 +163,7 @@ def scrape(driver,web_id,shop_shortcut,shop_name,date_from,date_to):
         driver.find_element_by_xpath("//*[@id='new-report-form']/form/div[4]/button").click()
         
         #pocka 20 sec nez se vygeneruje .csv
-        print "Waiting 60 seconds for the report to be generated"
+        print("Waiting 60 seconds for the report to be generated")
         time.sleep(60)
 
         #znovu nacte stranku kvuli objeveni odkazu na ztazeni .csv v html
@@ -186,7 +186,7 @@ def scrape(driver,web_id,shop_shortcut,shop_name,date_from,date_to):
                 os.rename(filename,"zbozi_stats_"+shop_shortcut+".csv")
         print "Statistics for shop "+shop_name+" has been succesfuly processed."
     except:
-        print "(!!!) Statistics for shop "+shop_name+" NOT FOUND on the Zbozi.cz web."
+        print("(!!!) Statistics for shop "+shop_name+" NOT FOUND on the Zbozi.cz web.")
         with open(save_path+"out_zbozi_stats_"+shop_shortcut+".csv", 'w') as csvoutput:
             writer = csv.writer(csvoutput, lineterminator='\n',delimiter=",")
             writer.writerow(['date','clicks','impressions','ctr','cpc_avg','cpc_all','position_avg','conversion_count','conversion_value','converion_rate','conversion_avg_price','scrape_date'])
@@ -286,10 +286,10 @@ os.chdir(save_path)
 sample_index=0
 try:
     sample_shortcut=parameters.get('Accounts')[0].get('Shop_shortcut')[sample_index]
-    print "Sample output:"
+    print("Sample output:")
     #test print
     cr = csv.reader(open(save_path+"out_zbozi_stats_"+sample_shortcut+".csv","rb"))
     for row in cr:    
         print row
 except IOError:
-    print "Sample of "+parameters.get('Accounts')[0].get('Shop_name')[sample_index]+" was not avaliable..."
+    print("Sample of "+parameters.get('Accounts')[0].get('Shop_name')[sample_index]+" was not avaliable...")
