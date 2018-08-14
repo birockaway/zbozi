@@ -11,6 +11,7 @@ from datetime import date, timedelta
 import csv
 from pyvirtualdisplay import Display
 
+print "Component started."
 print "Python libraries loaded."
 
 display = Display(visible=0, size=(1024, 768))
