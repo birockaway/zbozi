@@ -137,9 +137,6 @@ def lookup(driver, query1,query2):
 
 def scrape(driver,web_id,shop_shortcut,shop_name,date_from,date_to):
     #check if the dates from and to differs for the by_category extraction
-    if mode == 'by_category' and (date_from!=date_to):
-        driver.close()
-        exit('Error: Extraction query for category view was called while the date_from and date_to differs.')
     if os.path.isfile("out_zbozi_stats_"+shop_shortcut+".csv"):
     #    os.rename("out_zbozi_stats_"+shop_shortcut+".csv","zbozi_stats_"+shop_shortcut+"_"+datetime.datetime.now().isoformat()+".csv")
         os.rename("out_zbozi_stats_"+shop_shortcut+".csv","prior"+"_"+"zbozi_stats_"+shop_shortcut+".csv")    
