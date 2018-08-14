@@ -156,18 +156,18 @@ def scrape(driver,web_id,shop_shortcut,shop_name,date_from,date_to):
     time.sleep(5)
     try:
         if mode == 'summary':
-            #zaskrtne radio pole "summary"
-            driver.find_element_by_xpath("//input[@id='sd']").click()
-
-        if mode == 'by_category':
-            #zaskrtne radio pole "po kategoriich"
-            driver.find_element_by_xpath("//input[@id='sg']").click()
+            # klikni na Vytvorit novy report
+            driver.find_element_by_xpath("//*[@id='new-report-form']/button").click()
+            
+            # klikni na Typ = statistiky polozek
+            driver.find_element_by_xpath("//*[@id='new-report-form']/form/div[1]/select/option[2]").click()
 
         #stickne button na vygenerovani reportu
-        driver.find_element_by_xpath("//input[@id='createNewReport']").click()
-
+        driver.find_element_by_xpath("//*[@id='new-report-form']/form/div[4]/button").click()
+        
         #pocka 20 sec nez se vygeneruje .csv
-        time.sleep(20)
+        print "Waiting 60 seconds for the report to be generated"
+        time.sleep(60)
 
         #znovu nacte stranku kvuli objeveni odkazu na ztazeni .csv v html
         driver.get(link_web_stats)
@@ -248,53 +248,6 @@ time.sleep(5)
 
 
 ## SCRAPING
-
-if mode == 'by_category':
-    print "Sorry, by_category mode is currently unavaliable. Contact the administrator."
-'''    
-    # FOR CYKLUS pres vsechny vybrane scrape_datey v scrape_dates vektoru
-    for i in range(len(stats_dates)):
-        stats_date=stats_dates[i]
-
-
-        # zaloguje usera 1
-        lookup(driver,dict['Zbozi.cz']['Login_1']['Login'], dict['Zbozi.cz']['Login_1']['Password'])
-        time.sleep(5)
-
-        #for i in range(0,2):
-        #zavola scraping
-        for index in range(0,3):
-            shop_id = dict['Zbozi.cz']['Login_1']['Shop_id'][index]
-            shop_shortcut = dict['Zbozi.cz']['Login_1']['Shop_shortcut'][index]   
-            scrape(driver,shop_id,shop_shortcut,stats_date,stats_date)
-
-
-        # zaloguje usera 2
-        lookup(driver,dict['Zbozi.cz']['Login_2']['Login'], dict['Zbozi.cz']['Login_2']['Password'])
-        time.sleep(5)
-
-        #zavola scraping
-        shop_id = dict['Zbozi.cz']['Login_2']['Shop_id']
-        shop_shortcut = dict['Zbozi.cz']['Login_2']['Shop_shortcut']
-        scrape(driver,shop_id,shop_shortcut,stats_date,stats_date)
-
-
-        # zaloguje usera 3
-        lookup(driver,dict['Zbozi.cz']['Login_3']['Login'], dict['Zbozi.cz']['Login_3']['Password'])
-        time.sleep(5)
-
-
-        #zavola scraping
-        shop_id = dict['Zbozi.cz']['Login_3']['Shop_id']
-        shop_shortcut = dict['Zbozi.cz']['Login_3']['Shop_shortcut']
-        scrape(driver,shop_id,shop_shortcut,stats_date,stats_date)
-
-        #poresi csvcka
-        csv_handeler(mode,stats_date)
-
-'''
-
-
 
 if mode == 'summary':
     date_from=stats_dates[0]
