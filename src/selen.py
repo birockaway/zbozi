@@ -64,8 +64,16 @@ print("")
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('--no-sandbox')
-#chrome_options.add_argument('--headless')
-driver = webdriver.Chrome('/usr/local/bin/chromedriver', chrome_options=chrome_options)
+chrome_options.add_argument('--headless')
+chrome_options.add_argument('--disable-gpu')
+chrome_options.add_argument('--window-size=1920,1080')
+
+user_agent = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_5)"
+                        "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36")
+chrome_options.options.add_argument('--user-agent={}'.format(user_agent))
+
+#driver = webdriver.Chrome('/usr/local/bin/chromedriver', chrome_options=chrome_options)
+driver = webdriver.Chrome(chrome_options=self.options)
 
 driver.get("https://admin.zbozi.cz/loginScreen?url=%2F")
 
