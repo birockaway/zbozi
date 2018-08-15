@@ -48,7 +48,7 @@ password = parameters.get('Password')
 shop_id = parameters.get('Shop_id')
 
 print("Mode is "+mode)
-print("Mode is "+login)
+print("Mode is "+str(login))
 
 ### DEFINITION OF PARAMETERS ###
 #user input - cesta k souboru, kam se maji statistiky ukladat
