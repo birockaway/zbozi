@@ -144,7 +144,8 @@ if driver.find_elements_by_class_name("pageStatusMessage"):
     print("[ERROR] Failed to log in.")
     print("Invalid email or password. Check the credentials (neplatne prihlaseni).")
     driver.quit()
-    break
+    sys.exit()
+    #break
 else:
     print("Successfully logged in.")
     
