@@ -62,7 +62,7 @@ print(scrape_dates)
 print("")
 
 
-driver = webdriver.Chrome(executable_path=r"/Users/matus/python_projects/zbozi/chromedriver")
+driver = webdriver.Chrome(executable_path=r"/chromedriver")
 driver.get("https://admin.zbozi.cz/loginScreen?url=%2F")
 
 print("Trying to log in as "+jmeno+" ...")
