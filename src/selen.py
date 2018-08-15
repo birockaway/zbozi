@@ -64,7 +64,7 @@ print("")
 
 options = Options()
 options.add_argument('--headless')
-options.add_argument('--no-sandbox')
+#options.add_argument('--no-sandbox')
 driver = webdriver.Chrome('/usr/local/bin/chromedriver')
 
 driver.get("https://admin.zbozi.cz/loginScreen?url=%2F")
