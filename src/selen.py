@@ -63,7 +63,7 @@ print(scrape_dates)
 print("")
 
 chrome_options = webdriver.ChromeOptions()
-#chrome_options.add_argument('--no-sandbox')
+chrome_options.add_argument('--no-sandbox')
 chrome_options.add_argument('--headless')
 driver = webdriver.Chrome('/usr/local/bin/chromedriver')
 
