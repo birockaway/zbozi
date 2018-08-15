@@ -8,6 +8,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import NoSuchElementException
 
 from keboola import docker # pro komunikaci s parametrama a input/output mapping
+from pyvirtualdisplay import Display
 
 import re
 import pandas as pd
