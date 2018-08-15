@@ -42,13 +42,13 @@ scrape_date = str(time.strftime("%Y-%m-%d"))
 
 #mode
 mode = parameters.get('Mode')
-login = parameters.get('Login')
+login = parameters.get('Accounts')[account_number].get('Login')
 accounts = parameters.get('Accounts')
 password = parameters.get('Password')
 shop_id = parameters.get('Shop_id')
 
 print("Mode is "+mode)
-print("Mode is "+str(login))
+print("Login is "+str(login))
 
 ### DEFINITION OF PARAMETERS ###
 #user input - cesta k souboru, kam se maji statistiky ukladat
