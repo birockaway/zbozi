@@ -18,6 +18,7 @@ import datetime
 from datetime import date, timedelta # date input
 import csv
 import sys
+import urllib3
 
 print("Python libraries loaded.")
 
