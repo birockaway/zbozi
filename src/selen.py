@@ -62,9 +62,9 @@ print("Getting data for following dates: ")
 print(scrape_dates)
 print("")
 
-options = Options()
-#options.add_argument('--headless')
-options.add_argument('--no-sandbox')
+chrome_options = webdriver.ChromeOptions()
+#chrome_options.add_argument('--no-sandbox')
+chrome_options.add_argument('--headless')
 driver = webdriver.Chrome('/usr/local/bin/chromedriver')
 
 driver.get("https://admin.zbozi.cz/loginScreen?url=%2F")
