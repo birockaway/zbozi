@@ -39,9 +39,14 @@ parameters = cfg.get_parameters()
 #date
 scrape_date = str(time.strftime("%Y-%m-%d"))
 
+
 #mode
 mode = parameters.get('Mode')
-print("Mode is ... "+mode)
+login = parameters.get('Login')
+accounts = parameters.get('Accounts')
+password = parameters.get('Password')
+shop_id = parameters.get('Shop_id')
+print("Mode is "+mode+", login is "+login+", account is "+accounts+", shop_id is "+shop_id)
 
 ### DEFINITION OF PARAMETERS ###
 #user input - cesta k souboru, kam se maji statistiky ukladat
@@ -93,13 +98,8 @@ if not os.path.isdir(save_path):
 #zmeni working directory na slozku, kam se ukladaji statistiky
 os.chdir(save_path)
 
-jmeno = 'xxxxxx'
-heslo = 'xxxxxx'
-
 start_date = '2018-08-01'
 end_date = '2018-08-02'
-
-premise_id = '580'
 
 
 
@@ -133,8 +133,8 @@ box_username = driver.find_element_by_name('username')
 box_password = driver.find_element_by_name('password')
 
 
-box_username.send_keys(jmeno)
-box_password.send_keys(heslo)
+box_username.send_keys(login)
+box_password.send_keys(password)
 driver.find_element_by_xpath("//input[@type='submit']").click()
 
 time.sleep(1)
@@ -144,7 +144,7 @@ if driver.find_elements_by_class_name("pageStatusMessage"):
     print("[ERROR] Failed to log in.")
     print("Invalid email or password. Check the credentials (neplatne prihlaseni).")
     driver.quit()
-    sys.exit()
+    break
 else:
     print("Successfully logged in.")
     
@@ -153,7 +153,7 @@ for scrape_date in scrape_dates:
     print("Getting report for "+scrape_date+" ...")
 
     date_format = datetime.datetime.strptime(scrape_date, '%Y-%m-%d').strftime('%d.%m.%Y')
-    link_web_stats = "https://admin.zbozi.cz/premiseStatistics?premiseId=" + premise_id + "&dateFrom=" + date_format + "&dateTo=" + date_format
+    link_web_stats = "https://admin.zbozi.cz/premiseStatistics?premiseId=" + shop_id + "&dateFrom=" + date_format + "&dateTo=" + date_format
 
     driver.get(link_web_stats)
 
