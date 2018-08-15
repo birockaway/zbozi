@@ -30,11 +30,61 @@ print("Current Working Directory is ... "+os.getcwd())
 print("Config taken from ... "+os.path.abspath(os.path.join(os.getcwd(), os.pardir))+'data/')
 
 # initialize KBC configuration 
-##cfg = docker.Config(os.path.abspath(os.path.join(os.getcwd(), os.pardir))+'data/')
+cfg = docker.Config(os.path.abspath(os.path.join(os.getcwd(), os.pardir))+'data/')
 # loads application parameters - user defined
-##parameters = cfg.get_parameters()
+parameters = cfg.get_parameters()
 
+### PARAMETERS ####
+
+#date
+scrape_date = str(time.strftime("%Y-%m-%d"))
+
+#mode
+mode = parameters.get('Mode')
+print("Mode is ... "+mode)
+
+### DEFINITION OF PARAMETERS ###
+#user input - cesta k souboru, kam se maji statistiky ukladat
 save_path = os.path.abspath(os.path.join(os.getcwd(), os.pardir))+'data/out/tables/'
+#set current date as "today - delta"
+delta=2
+current_date = str((datetime.datetime.now()-timedelta(delta)).date())
+
+# date format checker - vyhodi chybu pokud stats_date nebude Y-m-d
+def validate(date_text):
+    try:
+        datetime.datetime.strptime(date_text, '%Y-%m-%d')
+    except ValueError:
+        raise ValueError("Incorrect data format, should be YYYY-MM-DD")
+
+#initialize stats_dates vector
+stats_dates={}
+
+#date preset from input parameters. Bud date_preset='Yesteday'/'last_week' nebo vsechny datumy ve stanovenem intervalu
+#! parametr 'date_preset' ma prednost.
+if parameters.get('Date_preset')=='Yesterday':
+    yesterday = date.today() - timedelta(1)
+    d1=yesterday
+    d2=d1
+elif parameters.get('Date_preset')=='last_week':
+    d1 = date.today() - timedelta(7)
+    d2 = date.today() - timedelta(1)
+elif parameters.get('Date_preset')=='last_31_days':
+    d1 = date.today() - timedelta(31)
+    d2 = date.today() - timedelta(1)    
+elif parameters.get('Date_preset')=='last_year':
+    d1 = date.today() - timedelta(365)
+    d2 = date.today() - timedelta(1)
+#customdate if not preseted
+else:
+    validate(parameters.get('Date_from'))
+    validate(parameters.get('Date_to'))
+    d1=datetime.datetime.strptime(parameters.get('Date_from'),'%Y-%m-%d')
+    d2=datetime.datetime.strptime(parameters.get('Date_to'),'%Y-%m-%d')
+#vypocet timedelty, ktera urcuje delku tahanych dni zpet    
+delta = d2 - d1
+for i in range(delta.days+1):
+    stats_dates[i]=(d1+timedelta(i)).strftime('%Y-%m-%d')
 
 #creates /data/out/ folder
 if not os.path.isdir(save_path):
