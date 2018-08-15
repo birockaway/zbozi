@@ -8,7 +8,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import NoSuchElementException
 
 from keboola import docker # pro komunikaci s parametrama a input/output mapping
-from pyvirtualdisplay import Display
+#from pyvirtualdisplay import Display
 
 import re
 import pandas as pd
@@ -22,8 +22,8 @@ import urllib3
 
 print("Python libraries loaded.")
 
-display = Display(visible=0, size=(1024, 768))
-display.start()
+#display = Display(visible=0, size=(1024, 768))
+#display.start()
 
 print("Current Working Directory is ... "+os.getcwd())
 
