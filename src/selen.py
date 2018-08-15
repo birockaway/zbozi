@@ -41,12 +41,14 @@ scrape_date = str(time.strftime("%Y-%m-%d"))
 
 
 #mode
-login = parameters.get('Login_email')
-#accounts = parameters.get('Accounts')
-#password = parameters.get('Password')
-#shop_id = parameters.get('Shop_id')
+login = parameters.get('Login')
+password = parameters.get('Password')
+shop_id = parameters.get('Shop_id')
+
 
 print("Login is "+login)
+print("Password is "+password)
+print("Shop_id is "+shop_id)
 
 ### DEFINITION OF PARAMETERS ###
 #user input - cesta k souboru, kam se maji statistiky ukladat
@@ -129,7 +131,7 @@ driver.get("https://admin.zbozi.cz/loginScreen?url=%2F")
 
 print("Trying to log in as "+login+" ...")
 
-box_username = driver.find_element_by_name('username')
+box_username = driver.find_element_by_name('login')
 box_password = driver.find_element_by_name('password')
 
 
