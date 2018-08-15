@@ -18,6 +18,28 @@ from datetime import date, timedelta # date input
 import csv
 import sys
 
+print("Python libraries loaded.")
+
+display = Display(visible=0, size=(1024, 768))
+display.start()
+
+print("Current Working Directory is ... "+os.getcwd())
+
+print("Config taken from ... "+os.path.abspath(os.path.join(os.getcwd(), os.pardir))+'data/')
+
+# initialize KBC configuration 
+##cfg = docker.Config(os.path.abspath(os.path.join(os.getcwd(), os.pardir))+'data/')
+# loads application parameters - user defined
+##parameters = cfg.get_parameters()
+
+save_path = os.path.abspath(os.path.join(os.getcwd(), os.pardir))+'data/out/tables/'
+
+#creates /data/out/ folder
+if not os.path.isdir(save_path):
+   os.makedirs(save_path)
+
+#zmeni working directory na slozku, kam se ukladaji statistiky
+os.chdir(save_path)
 
 jmeno = 'xxxxxx'
 heslo = 'xxxxxx'
@@ -27,7 +49,6 @@ end_date = '2018-08-02'
 
 premise_id = '580'
 
-save_path = '/Users/matus/Downloads/'
 
 #zmeni working directory na slozku, kam se ukladaji statistiky
 os.chdir(save_path)
