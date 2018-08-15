@@ -73,7 +73,7 @@ user_agent = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_5)"
 chrome_options.add_argument('--user-agent={}'.format(user_agent))
 
 #driver = webdriver.Chrome('/usr/local/bin/chromedriver', chrome_options=chrome_options)
-driver = webdriver.Chrome(chrome_options=self.options)
+driver = webdriver.Chrome(chrome_options=chrome_options)
 
 driver.get("https://admin.zbozi.cz/loginScreen?url=%2F")
 
