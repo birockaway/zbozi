@@ -42,7 +42,7 @@ scrape_date = str(time.strftime("%Y-%m-%d"))
 
 #mode
 mode = parameters.get('Mode')
-login = parameters.get('Accounts').get('Login')
+login = parameters.get('Accounts')[1].get('Login')
 accounts = parameters.get('Accounts')
 password = parameters.get('Password')
 shop_id = parameters.get('Shop_id')
