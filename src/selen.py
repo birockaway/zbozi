@@ -50,11 +50,6 @@ end_date = '2018-08-02'
 premise_id = '580'
 
 
-#zmeni working directory na slozku, kam se ukladaji statistiky
-os.chdir(save_path)
-
-
-
 
 dates = pd.date_range(start_date, end_date).tolist()
 scrape_dates = []
