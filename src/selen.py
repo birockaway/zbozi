@@ -238,6 +238,8 @@ for stats_date in stats_dates.values():
             os.remove(filename)
                 
 counter = 1
+all = []
+
 for filename in os.listdir(save_path):
     if filename.startswith("out_"):
         with open(save_path+filename, 'r',encoding="utf-8") as csvinput:
@@ -246,8 +248,9 @@ for filename in os.listdir(save_path):
                 reader = csv.reader(csvinput, delimiter=";")
                 all = []
                 next(reader,None)
-
-                writer.writerow(['id_polozky','jmeno_polozky','zobrazeni','prokliky','celkova_cena_za_prokliky','pocet_konverzi','date','eshop_name'])
+                
+                if counter == 1:
+                    writer.writerow(['id_polozky','jmeno_polozky','zobrazeni','prokliky','celkova_cena_za_prokliky','pocet_konverzi','date','eshop_name'])
                 
                 for row in reader:
                     all.append(row)
