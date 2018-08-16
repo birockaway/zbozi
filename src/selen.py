@@ -248,7 +248,7 @@ for filename in os.listdir(save_path):
                 
                 writer.writerows(all)
                 print("sample: ")
-                print(head(all))
+                print(all[:9])
                 
                 counter = counter + 1
 
