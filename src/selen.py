@@ -243,7 +243,7 @@ for filename in os.listdir(save_path):
                 next(reader,None)
 
                 if counter == 1:
-                    writer.writerow(['id_polozky','jmeno_polozky','zobrazeni','prokliky','celkova_cena_za_prokliky','pocet_konverzi','scrape_date'])
+                    writer.writerow(['id_polozky','jmeno_polozky','zobrazeni','prokliky','celkova_cena_za_prokliky','pocet_konverzi','date','eshop_name'])
                 
                 for row in reader:
                     all.append(row)
