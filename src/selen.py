@@ -40,6 +40,7 @@ scrape_date = str(time.strftime("%Y-%m-%d"))
 login = parameters.get('Login')
 password = parameters.get('Password')
 shop_id = parameters.get('Shop_id')
+eshop_name = parameters.get('Eshop_name')
 
 '''
 login = 'test@test'
@@ -218,10 +219,11 @@ for scrape_date in scrape_dates:
                     all = []
                     next(reader,None)
                 
-                    writer.writerow(['id_polozky','jmeno_polozky','zobrazeni','prokliky','celkova_cena_za_prokliky','pocet_konverzi','scrape_date'])
+                    writer.writerow(['id_polozky','jmeno_polozky','zobrazeni','prokliky','celkova_cena_za_prokliky','pocet_konverzi','date','eshop_name'])
                 
                     for row in reader:
                         row.append(scrape_date)
+                        row.append(eshop_name)
                         all.append(row)
                 
                     writer.writerows(all)
@@ -248,8 +250,6 @@ for filename in os.listdir(save_path):
                 
                 writer.writerows(all)
                
-                
-                
                 counter = counter + 1
 
 for filename in os.listdir(save_path):
