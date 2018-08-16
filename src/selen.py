@@ -235,7 +235,7 @@ for filename in os.listdir(save_path):
     if filename.startswith("out_"):
         with open(save_path+filename, 'r',encoding="utf-8") as csvinput:
             with open(save_path+'final.csv', 'a',encoding="utf-8") as csvoutput:
-                writer = csv.writer(csvoutput, lineterminator='\n',delimiter=";")
+                writer = csv.writer(csvoutput, lineterminator='\n',delimiter=",")
                 reader = csv.reader(csvinput,lineterminator='\n',delimiter=";")
                 all = []
                 next(reader,None)
