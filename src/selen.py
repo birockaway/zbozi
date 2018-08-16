@@ -6,7 +6,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import NoSuchElementException
-
 from keboola import docker # pro komunikaci s parametrama a input/output mapping
 
 import re
@@ -40,15 +39,6 @@ login = parameters.get('Login')
 password = parameters.get('Password')
 shop_id = parameters.get('Shop_id')
 eshop_name = parameters.get('Eshop_name')
-
-'''
-login = 'test@test'
-password = 'pass'
-shop_id = '1'
-'''
-
-print("Login is "+login)
-print("Shop_id is "+shop_id)
 
 ### DEFINITION OF PARAMETERS ###
 #user input - cesta k souboru, kam se maji statistiky ukladat
@@ -108,10 +98,6 @@ date_to_url = '{d.day}.{d.month}.{d.year}'.format(d=datetime.datetime.strptime(d
 
 print("Getting data for following date range: " +date_from+ " - " +date_to)
 
-print("stats_dates ")
-print(stats_dates)
-
-
 #creates /data/out/ folder
 if not os.path.isdir(save_path):
    os.makedirs(save_path)
@@ -130,7 +116,6 @@ user_agent = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_5)"
                         "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36")
 chrome_options.add_argument('--user-agent={}'.format(user_agent))
 
-#driver = webdriver.Chrome('/usr/local/bin/chromedriver', chrome_options=chrome_options)
 driver = webdriver.Chrome(chrome_options=chrome_options)
 
 driver.command_executor._commands["send_command"] = ("POST", '/session/{}/chromium/send_command'.format(driver.session_id))
