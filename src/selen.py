@@ -247,6 +247,8 @@ for filename in os.listdir(save_path):
                     all.append(row)
                 
                 writer.writerows(all)
+                print("sample: ")
+                print(head(all))
                 
                 counter = counter + 1
 
