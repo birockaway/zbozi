@@ -36,7 +36,6 @@ parameters = cfg.get_parameters()
 #date
 scrape_date = str(time.strftime("%Y-%m-%d"))
 
-
 login = parameters.get('Login')
 password = parameters.get('Password')
 shop_id = parameters.get('Shop_id')
@@ -102,18 +101,12 @@ for i in range(delta.days+1):
 date_from = stats_dates[0]
 date_to = stats_dates[len(stats_dates)-1]
 
-print("date_from " +date_from)
-print("date_to " +date_to)
 
 # for urls - needs d.m.Y format
 date_from_url = '{d.day}.{d.month}.{d.year}'.format(d=datetime.datetime.strptime(date_from, '%Y-%m-%d'))
 date_to_url = '{d.day}.{d.month}.{d.year}'.format(d=datetime.datetime.strptime(date_to, '%Y-%m-%d'))
 
-print("date_from_url " +date_from_url)
-print("date_to_url " +date_to_url)
-
-sys.exit(1)
-
+print("Getting data for following date range: " +date_from+ " - " +date_to)
 
 #creates /data/out/ folder
 if not os.path.isdir(save_path):
@@ -122,19 +115,6 @@ if not os.path.isdir(save_path):
 #zmeni working directory na slozku, kam se ukladaji statistiky
 os.chdir(save_path)
 
-'''
-start_date = '2018-08-01'
-end_date = '2018-08-01'
-
-dates = pd.date_range(start_date, end_date).tolist()
-scrape_dates = []
-for z in range(len(dates)):
-    scrape_dates.append(dates[z].strftime("%Y-%m-%d"))
-'''
-
-print("Getting data for following dates: ")
-print(scrape_dates)
-print("")
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('--no-sandbox')
@@ -184,7 +164,7 @@ for scrape_date in scrape_dates:
     print("Getting report for "+scrape_date+" ...")
 
     date_format = datetime.datetime.strptime(scrape_date, '%Y-%m-%d').strftime('%d.%m.%Y')
-    link_web_stats = "https://admin.zbozi.cz/premiseStatistics?premiseId=" + shop_id + "&dateFrom=" + date_format + "&dateTo=" + date_format
+    link_web_stats = "https://admin.zbozi.cz/premiseStatistics?premiseId=" + shop_id + "&dateFrom=" + date_from_url + "&dateTo=" + date_to_url
 
     driver.get(link_web_stats)
 
