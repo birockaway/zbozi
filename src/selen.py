@@ -178,7 +178,7 @@ for scrape_date in scrape_dates:
     time.sleep(5)
     driver.get(link_web_stats)
 
-    print("["+scrape_date+"] Waiting for the report to be generated... (stav vytváří se)")
+    print("["+scrape_date+"] Waiting for the report to be generated... (stav vytvari se)")
 
     status = driver.find_elements_by_tag_name("tbody")[0].find_elements_by_tag_name("span")[0].get_attribute('innerHTML')
 
