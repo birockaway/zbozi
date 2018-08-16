@@ -17,8 +17,11 @@ import time
 import datetime
 from datetime import date, timedelta # date input
 import csv
-import sys
 import urllib3
+
+import sys  
+reload(sys)  
+sys.setdefaultencoding('utf-8')
 
 import warnings
 warnings.filterwarnings("ignore", message="numpy.dtype size changed")
