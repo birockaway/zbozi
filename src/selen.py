@@ -237,7 +237,6 @@ for stats_date in stats_dates.values():
         if not filename.startswith("out_"):
             os.remove(filename)
                 
-all = []
 
 with open(save_path+'final.csv', 'w',encoding="utf-8") as csvoutput:
     writer = csv.writer(csvoutput, lineterminator='\n',delimiter=",")
@@ -247,6 +246,8 @@ with open(save_path+'final.csv', 'w',encoding="utf-8") as csvoutput:
                 reader = csv.reader(csvinput, delimiter=";")
                 
                 next(reader,None)
+                
+                all = []
                 
                 writer.writerow(['id_polozky','jmeno_polozky','zobrazeni','prokliky','celkova_cena_za_prokliky','pocet_konverzi','date','eshop_name'])
                 
