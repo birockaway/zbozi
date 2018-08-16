@@ -165,7 +165,7 @@ else:
     
 for stats_date in stats_dates.values():
     
-    print("Getting report for "+str(stats_dates)+" ...")
+    print("Getting report for "+str(stats_date)+" ...")
 
     date_format = datetime.datetime.strptime(stats_date, '%Y-%m-%d').strftime('%d.%m.%Y')
     link_web_stats = "https://admin.zbozi.cz/premiseStatistics?premiseId=" + shop_id + "&dateFrom=" + stats_date + "&dateTo=" + stats_date
