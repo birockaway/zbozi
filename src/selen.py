@@ -129,6 +129,13 @@ chrome_options.add_argument('--user-agent={}'.format(user_agent))
 #driver = webdriver.Chrome('/usr/local/bin/chromedriver', chrome_options=chrome_options)
 driver = webdriver.Chrome(chrome_options=chrome_options)
 
+driver.command_executor._commands["send_command"] = ("POST", '/session/{}/chromium/send_command'.format(self.driver.session_id))
+params = {
+            'cmd': 'Page.setDownloadBehavior',
+            'params': {'behavior': 'allow', 'downloadPath': save_path}
+        }
+driver.execute("send_command", params)
+
 driver.get("https://admin.zbozi.cz/loginScreen?url=%2F")
 
 print("Trying to log in as "+login+" with shop_id "+shop_id)
