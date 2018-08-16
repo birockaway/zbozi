@@ -29,7 +29,6 @@ print("Python libraries loaded.")
 #display.start()
 
 print("Current Working Directory is ... "+os.getcwd())
-
 print("Config taken from ... "+os.path.abspath(os.path.join(os.getcwd(), os.pardir))+'data/')
 
 # initialize KBC configuration 
@@ -72,6 +71,7 @@ def validate(date_text):
 #initialize stats_dates vector
 stats_dates={}
 
+'''
 #date preset from input parameters. Bud date_preset='Yesteday'/'last_week' nebo vsechny datumy ve stanovenem intervalu
 #! parametr 'date_preset' ma prednost.
 if parameters.get('Date_preset')=='Yesterday':
@@ -97,6 +97,7 @@ else:
 delta = d2 - d1
 for i in range(delta.days+1):
     stats_dates[i]=(d1+timedelta(i)).strftime('%Y-%m-%d')
+'''
 
 #creates /data/out/ folder
 if not os.path.isdir(save_path):
