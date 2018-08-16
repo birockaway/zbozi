@@ -21,8 +21,9 @@ import sys
 import urllib3
 
 import warnings
-if not sys.warnoptions:
-    warnings.simplefilter("ignore")
+warnings.simplefilter("ignore", UserWarning)
+
+import numpy
 
 print("Python libraries loaded.")
 
