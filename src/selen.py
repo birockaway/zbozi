@@ -260,5 +260,12 @@ for filename in os.listdir(save_path):
 for filename in os.listdir(save_path):
     if not filename.startswith("fin"):
         os.remove(filename)
-    
+
+with open(save_path+'final.csv', 'r',encoding="utf-8") as f:
+    reader = csv.reader(f)
+    for row in reader:
+        print(row[0])
+        print(row[1])
+        print(row[3])
+        
 driver.quit()
