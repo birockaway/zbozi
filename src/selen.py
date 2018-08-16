@@ -75,8 +75,8 @@ if parameters.get('Date_preset')=='Yesterday':
     d1=yesterday
     d2=d1
 elif parameters.get('Date_preset')=='last_3_days':
-   d1 = date.today() - timedelta(7)
-   d2 = date.today() - timedelta(3)
+   d1 = date.today() - timedelta(3)
+   d2 = date.today() - timedelta(1)
 elif parameters.get('Date_preset')=='last_week':
     d1 = date.today() - timedelta(7)
     d2 = date.today() - timedelta(1)
@@ -108,7 +108,9 @@ date_to_url = '{d.day}.{d.month}.{d.year}'.format(d=datetime.datetime.strptime(d
 
 print("Getting data for following date range: " +date_from+ " - " +date_to)
 
-print("stats_dates "+stats_dates)
+print("stats_dates ")
+print(stats_dates)
+
 
 #creates /data/out/ folder
 if not os.path.isdir(save_path):
