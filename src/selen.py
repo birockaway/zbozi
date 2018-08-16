@@ -137,7 +137,7 @@ driver.get("https://admin.zbozi.cz/loginScreen?url=%2F")
 
 print("Trying to log in as "+login+" ...")
 
-box_username = driver.find_element_by_name('login')
+box_username = driver.find_element_by_name('username')
 box_password = driver.find_element_by_name('password')
 
 
