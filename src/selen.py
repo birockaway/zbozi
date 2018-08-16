@@ -250,4 +250,8 @@ for filename in os.listdir(save_path):
                 
                 counter = counter + 1
 
+for filename in os.listdir(save_path):
+    if not filename.startswith("fin"):
+        os.remove(filename)
+    
 driver.quit()
