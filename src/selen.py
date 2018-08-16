@@ -163,7 +163,7 @@ if driver.find_elements_by_class_name("pageStatusMessage"):
 else:
     print("Successfully logged in.")
     
-for stats_date in stat_dates:
+for stats_date in stats_dates:
     
     print("Getting report for "+stats_dates+" ...")
 
@@ -209,7 +209,7 @@ for stats_date in stat_dates:
     for filename in os.listdir(save_path):
                 if filename.startswith("statistics"):
                      print("renaming "+filename)
-                     os.rename(filename,"zbozi_stats_"+ stat_dates +".csv")
+                     os.rename(filename,"zbozi_stats_"+ stats_dates +".csv")
     
     # rename zbozi_stats.csv to out_zbozi_stats.csv and add scrape_date column to report
     for filename in os.listdir(save_path):
