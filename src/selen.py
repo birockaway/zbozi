@@ -239,13 +239,13 @@ for stats_date in stats_dates.values():
                 
 all = []
 
-for filename in os.listdir(save_path):
-    if filename.startswith("out_"):
-        with open(save_path+filename, 'r',encoding="utf-8") as csvinput:
-            with open(save_path+'final.csv', 'w',encoding="utf-8") as csvoutput:
-                writer = csv.writer(csvoutput, lineterminator='\n',delimiter=",")
+with open(save_path+'final.csv', 'w',encoding="utf-8") as csvoutput:
+    writer = csv.writer(csvoutput, lineterminator='\n',delimiter=",")
+    for filename in os.listdir(save_path):
+        if filename.startswith("out_"):
+            with open(save_path+filename, 'r',encoding="utf-8") as csvinput:
                 reader = csv.reader(csvinput, delimiter=";")
-                all = []
+                
                 next(reader,None)
                 
                 writer.writerow(['id_polozky','jmeno_polozky','zobrazeni','prokliky','celkova_cena_za_prokliky','pocet_konverzi','date','eshop_name'])
