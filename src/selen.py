@@ -108,6 +108,8 @@ date_to_url = '{d.day}.{d.month}.{d.year}'.format(d=datetime.datetime.strptime(d
 
 print("Getting data for following date range: " +date_from+ " - " +date_to)
 
+print("stats_dates "+stats_dates)
+
 #creates /data/out/ folder
 if not os.path.isdir(save_path):
    os.makedirs(save_path)
@@ -159,11 +161,11 @@ if driver.find_elements_by_class_name("pageStatusMessage"):
 else:
     print("Successfully logged in.")
     
-for scrape_date in scrape_dates:
+for stats_date in stat_dates:
     
-    print("Getting report for "+scrape_date+" ...")
+    print("Getting report for "+stats_dates+" ...")
 
-    date_format = datetime.datetime.strptime(scrape_date, '%Y-%m-%d').strftime('%d.%m.%Y')
+    date_format = datetime.datetime.strptime(stats_date, '%Y-%m-%d').strftime('%d.%m.%Y')
     link_web_stats = "https://admin.zbozi.cz/premiseStatistics?premiseId=" + shop_id + "&dateFrom=" + date_from_url + "&dateTo=" + date_to_url
 
     driver.get(link_web_stats)
@@ -180,7 +182,7 @@ for scrape_date in scrape_dates:
     time.sleep(5)
     driver.get(link_web_stats)
 
-    print("["+scrape_date+"] Waiting for the report to be generated... (stav vytvari se)")
+    print("["+stat_dates+"] Waiting for the report to be generated... (stav vytvari se)")
 
     status = driver.find_elements_by_tag_name("tbody")[0].find_elements_by_tag_name("span")[0].get_attribute('innerHTML')
 
@@ -195,7 +197,7 @@ for scrape_date in scrape_dates:
         
     link_stats = driver.find_elements_by_partial_link_text("Stáhnout CSV")[0].get_attribute('href')
     
-    print("["+scrape_date+"] Report was generated and downloaded.")
+    print("["+stat_dates+"] Report was generated and downloaded.")
     print("")
     driver.get(link_stats)
 
@@ -205,7 +207,7 @@ for scrape_date in scrape_dates:
     for filename in os.listdir(save_path):
                 if filename.startswith("statistics"):
                      print("renaming "+filename)
-                     os.rename(filename,"zbozi_stats_"+ scrape_date +".csv")
+                     os.rename(filename,"zbozi_stats_"+ stat_dates +".csv")
     
     # rename zbozi_stats.csv to out_zbozi_stats.csv and add scrape_date column to report
     for filename in os.listdir(save_path):
@@ -221,7 +223,7 @@ for scrape_date in scrape_dates:
                     writer.writerow(['id_polozky','jmeno_polozky','zobrazeni','prokliky','celkova_cena_za_prokliky','pocet_konverzi','date','eshop_name'])
                 
                     for row in reader:
-                        row.append(scrape_date)
+                        row.append(stat_dates)
                         row.append(eshop_name)
                         all.append(row)
                 
