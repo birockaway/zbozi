@@ -105,6 +105,13 @@ date_to = stats_dates[len(stats_dates)-1]
 print("date_from " +date_from)
 print("date_to " +date_to)
 
+# for urls - needs d.m.Y format
+date_from_url = '{d.day}.{d.month}.{d.year}'.format(d=datetime.datetime.strptime(date_from, '%Y-%m-%d'))
+date_to_url = '{d.day}.{d.month}.{d.year}'.format(d=datetime.datetime.strptime(date_to, '%Y-%m-%d'))
+
+print("date_from_url " +date_from_url)
+print("date_to_url " +date_to_url)
+
 sys.exit(1)
 
 
