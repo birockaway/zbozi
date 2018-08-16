@@ -21,8 +21,7 @@ import sys
 import urllib3
 
 import warnings
-warnings.filterwarnings("ignore", message="numpy.dtype size changed")
-warnings.filterwarnings("ignore", message="numpy.ufunc size changed")
+warnings.filterwarnings("always")
 
 print("Python libraries loaded.")
 
