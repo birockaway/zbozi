@@ -210,8 +210,8 @@ for scrape_date in scrape_dates:
     # rename zbozi_stats.csv to out_zbozi_stats.csv and add scrape_date column to report
     for filename in os.listdir(save_path):
         if filename.endswith(".csv") and not (filename.startswith("out_") or filename.startswith("prior_")):
-            with open(save_path+filename,'r',encoding="UTF-8", errors="ignore") as csvinput:
-                with open(save_path+'out_'+filename, 'w') as csvoutput:
+            with open(save_path+filename,'r',encoding="iso-8859-1", errors="ignore") as csvinput:
+                with open(save_path+'out_'+filename, 'w',encoding="iso-8859-1") as csvoutput:
                     writer = csv.writer(csvoutput, lineterminator='\n',delimiter=";")
                     reader = csv.reader(csvinput,delimiter=";")
                 
