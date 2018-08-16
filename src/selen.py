@@ -222,7 +222,7 @@ for stats_date in stats_dates.values():
         if not filename.startswith("out_"):
             os.remove(filename)
                 
-
+counter = 1
 with open(save_path+'final.csv', 'w',encoding="utf-8") as csvoutput:
     writer = csv.writer(csvoutput, lineterminator='\n',delimiter=",")
     for filename in os.listdir(save_path):
@@ -233,13 +233,15 @@ with open(save_path+'final.csv', 'w',encoding="utf-8") as csvoutput:
                 next(reader,None)
                 
                 all = []
-                
-                writer.writerow(['id_polozky','jmeno_polozky','zobrazeni','prokliky','celkova_cena_za_prokliky','pocet_konverzi','date','eshop_name'])
+                if counter == 1:
+                    writer.writerow(['id_polozky','jmeno_polozky','zobrazeni','prokliky','celkova_cena_za_prokliky','pocet_konverzi','date','eshop_name'])
                 
                 for row in reader:
                     all.append(row)
                 
                 writer.writerows(all)
+                
+                counter = counter + 1
                
 for filename in os.listdir(save_path):
     if not filename.startswith("fin"):
