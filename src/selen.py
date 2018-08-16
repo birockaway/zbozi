@@ -21,7 +21,8 @@ import sys
 import urllib3
 
 import warnings
-warnings.filterwarnings("always")
+if not sys.warnoptions:
+    warnings.simplefilter("ignore")
 
 print("Python libraries loaded.")
 
