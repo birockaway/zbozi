@@ -165,10 +165,12 @@ else:
     
 for stats_date in stats_dates.values():
     
-    print("Getting report for "+str(stats_date)+" ...")
+    scrape_date = str(stats_date)
+    
+    print("Getting report for "+str(scrape_date)+" ...")
 
-    date_format = datetime.datetime.strptime(stats_date, '%Y-%m-%d').strftime('%d.%m.%Y')
-    link_web_stats = "https://admin.zbozi.cz/premiseStatistics?premiseId=" + shop_id + "&dateFrom=" + stats_date + "&dateTo=" + stats_date
+    date_format = datetime.datetime.strptime(scrape_date, '%Y-%m-%d').strftime('%d.%m.%Y')
+    link_web_stats = "https://admin.zbozi.cz/premiseStatistics?premiseId=" + shop_id + "&dateFrom=" + date_format + "&dateTo=" + date_format
 
     driver.get(link_web_stats)
 
@@ -184,7 +186,7 @@ for stats_date in stats_dates.values():
     time.sleep(5)
     driver.get(link_web_stats)
 
-    print("["+stats_date+"] Waiting for the report to be generated... (stav vytvari se)")
+    print("["+scrape_date+"] Waiting for the report to be generated... (stav vytvari se)")
 
     status = driver.find_elements_by_tag_name("tbody")[0].find_elements_by_tag_name("span")[0].get_attribute('innerHTML')
 
@@ -199,7 +201,7 @@ for stats_date in stats_dates.values():
         
     link_stats = driver.find_elements_by_partial_link_text("Stáhnout CSV")[0].get_attribute('href')
     
-    print("["+stats_date+"] Report was generated and downloaded.")
+    print("["+scrape_date+"] Report was generated and downloaded.")
     print("")
     driver.get(link_stats)
 
@@ -209,7 +211,7 @@ for stats_date in stats_dates.values():
     for filename in os.listdir(save_path):
                 if filename.startswith("statistics"):
                      print("renaming "+filename)
-                     os.rename(filename,"zbozi_stats_"+ stats_dates +".csv")
+                     os.rename(filename,"zbozi_stats_"+ scrape_date +".csv")
     
     # rename zbozi_stats.csv to out_zbozi_stats.csv and add scrape_date column to report
     for filename in os.listdir(save_path):
@@ -225,7 +227,7 @@ for stats_date in stats_dates.values():
                     writer.writerow(['id_polozky','jmeno_polozky','zobrazeni','prokliky','celkova_cena_za_prokliky','pocet_konverzi','date','eshop_name'])
                 
                     for row in reader:
-                        row.append(stats_date)
+                        row.append(scrape_date)
                         row.append(eshop_name)
                         all.append(row)
                 
