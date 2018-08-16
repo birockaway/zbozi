@@ -211,7 +211,7 @@ for scrape_date in scrape_dates:
     for filename in os.listdir(save_path):
         if filename.endswith(".csv") and not (filename.startswith("out_") or filename.startswith("prior_")):
             with open(save_path+filename,'r',encoding="iso-8859-2", errors="ignore") as csvinput:
-                with open(save_path+'out_'+filename, 'w',encoding="iso-8859-2") as csvoutput:
+                with open(save_path+'out_'+filename, 'w',encoding="utf-8") as csvoutput:
                     writer = csv.writer(csvoutput, lineterminator='\n',delimiter=";")
                     reader = csv.reader(csvinput,delimiter=";")
                 
@@ -233,16 +233,13 @@ for scrape_date in scrape_dates:
 counter = 1
 for filename in os.listdir(save_path):
     if filename.startswith("out_"):
-        with open(save_path+filename, 'r') as csvinput:
-            with open(save_path+'final.csv', 'a') as csvoutput:
+        with open(save_path+filename, 'r',encoding="utf-8") as csvinput:
+            with open(save_path+'final.csv', 'a',encoding="utf-8") as csvoutput:
                 writer = csv.writer(csvoutput, lineterminator='\n',delimiter=";")
                 reader = csv.reader(csvinput,lineterminator='\n',delimiter=";")
                 all = []
                 next(reader,None)
-                
-                
-                
-            
+
                 if counter == 1:
                     writer.writerow(['id_polozky','jmeno_polozky','zobrazeni','prokliky','celkova_cena_za_prokliky','pocet_konverzi','scrape_date'])
                 
