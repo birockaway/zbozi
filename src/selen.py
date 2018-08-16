@@ -247,8 +247,7 @@ for filename in os.listdir(save_path):
                 all = []
                 next(reader,None)
 
-                if counter == 1:
-                    writer.writerow(['id_polozky','jmeno_polozky','zobrazeni','prokliky','celkova_cena_za_prokliky','pocet_konverzi','date','eshop_name'])
+                writer.writerow(['id_polozky','jmeno_polozky','zobrazeni','prokliky','celkova_cena_za_prokliky','pocet_konverzi','date','eshop_name'])
                 
                 for row in reader:
                     all.append(row)
@@ -260,12 +259,5 @@ for filename in os.listdir(save_path):
 for filename in os.listdir(save_path):
     if not filename.startswith("fin"):
         os.remove(filename)
-
-with open(save_path+'final.csv', 'r',encoding="utf-8") as f:
-    reader = csv.reader(f)
-    for row in reader:
-        print(row[0])
-        print(row[1])
-        print(row[3])
         
 driver.quit()
