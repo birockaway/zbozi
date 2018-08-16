@@ -166,7 +166,7 @@ for stats_date in stat_dates:
     print("Getting report for "+stats_dates+" ...")
 
     date_format = datetime.datetime.strptime(stats_date, '%Y-%m-%d').strftime('%d.%m.%Y')
-    link_web_stats = "https://admin.zbozi.cz/premiseStatistics?premiseId=" + shop_id + "&dateFrom=" + date_from_url + "&dateTo=" + date_to_url
+    link_web_stats = "https://admin.zbozi.cz/premiseStatistics?premiseId=" + shop_id + "&dateFrom=" + stats_date + "&dateTo=" + stats_date
 
     driver.get(link_web_stats)
 
@@ -182,7 +182,7 @@ for stats_date in stat_dates:
     time.sleep(5)
     driver.get(link_web_stats)
 
-    print("["+stat_dates+"] Waiting for the report to be generated... (stav vytvari se)")
+    print("["+stats_date+"] Waiting for the report to be generated... (stav vytvari se)")
 
     status = driver.find_elements_by_tag_name("tbody")[0].find_elements_by_tag_name("span")[0].get_attribute('innerHTML')
 
@@ -197,7 +197,7 @@ for stats_date in stat_dates:
         
     link_stats = driver.find_elements_by_partial_link_text("Stáhnout CSV")[0].get_attribute('href')
     
-    print("["+stat_dates+"] Report was generated and downloaded.")
+    print("["+stats_date+"] Report was generated and downloaded.")
     print("")
     driver.get(link_stats)
 
@@ -223,7 +223,7 @@ for stats_date in stat_dates:
                     writer.writerow(['id_polozky','jmeno_polozky','zobrazeni','prokliky','celkova_cena_za_prokliky','pocet_konverzi','date','eshop_name'])
                 
                     for row in reader:
-                        row.append(stat_dates)
+                        row.append(stats_date)
                         row.append(eshop_name)
                         all.append(row)
                 
