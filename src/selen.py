@@ -21,9 +21,7 @@ import sys
 import urllib3
 
 import warnings
-warnings.simplefilter("ignore", UserWarning)
-
-import numpy
+warnings.filterwarnings("ignore", message="numpy.dtype size changed")
 
 print("Python libraries loaded.")
 
