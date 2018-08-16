@@ -234,9 +234,9 @@ counter = 1
 for filename in os.listdir(save_path):
     if filename.startswith("out_"):
         with open(save_path+filename, 'r',encoding="utf-8") as csvinput:
-            with open(save_path+'final.csv', 'a',encoding="utf-8") as csvoutput:
+            with open(save_path+'final.csv', 'w',encoding="utf-8") as csvoutput:
                 writer = csv.writer(csvoutput, lineterminator='\n',delimiter=",")
-                reader = csv.reader(csvinput,lineterminator='\n',delimiter=";")
+                reader = csv.reader(csvinput, delimiter=";")
                 all = []
                 next(reader,None)
 
@@ -247,8 +247,8 @@ for filename in os.listdir(save_path):
                     all.append(row)
                 
                 writer.writerows(all)
-                print("sample: ")
-                print(all[:9])
+               
+                
                 
                 counter = counter + 1
 
