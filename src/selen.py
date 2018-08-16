@@ -237,7 +237,6 @@ for stats_date in stats_dates.values():
         if not filename.startswith("out_"):
             os.remove(filename)
                 
-counter = 1
 all = []
 
 for filename in os.listdir(save_path):
@@ -249,16 +248,13 @@ for filename in os.listdir(save_path):
                 all = []
                 next(reader,None)
                 
-                if counter == 1:
-                    writer.writerow(['id_polozky','jmeno_polozky','zobrazeni','prokliky','celkova_cena_za_prokliky','pocet_konverzi','date','eshop_name'])
+                writer.writerow(['id_polozky','jmeno_polozky','zobrazeni','prokliky','celkova_cena_za_prokliky','pocet_konverzi','date','eshop_name'])
                 
                 for row in reader:
                     all.append(row)
                 
                 writer.writerows(all)
                
-                counter = counter + 1
-
 for filename in os.listdir(save_path):
     if not filename.startswith("fin"):
         os.remove(filename)
