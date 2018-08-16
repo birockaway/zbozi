@@ -20,6 +20,7 @@ import csv
 import urllib3
 
 import sys  
+from importlib import reload
 reload(sys)  
 sys.setdefaultencoding('utf-8')
 
