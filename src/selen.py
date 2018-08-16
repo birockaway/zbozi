@@ -25,9 +25,6 @@ warnings.filterwarnings("ignore", message="numpy.dtype size changed")
 
 print("Python libraries loaded.")
 
-#display = Display(visible=0, size=(1024, 768))
-#display.start()
-
 print("Current Working Directory is ... "+os.getcwd())
 print("Config taken from ... "+os.path.abspath(os.path.join(os.getcwd(), os.pardir))+'data/')
 
@@ -36,7 +33,6 @@ cfg = docker.Config(os.path.abspath(os.path.join(os.getcwd(), os.pardir))+'data/
 parameters = cfg.get_parameters()
 
 ### PARAMETERS ####
-
 #date
 scrape_date = str(time.strftime("%Y-%m-%d"))
 
@@ -52,7 +48,6 @@ shop_id = '1'
 '''
 
 print("Login is "+login)
-print("Password is "+password)
 print("Shop_id is "+shop_id)
 
 ### DEFINITION OF PARAMETERS ###
@@ -136,7 +131,7 @@ driver = webdriver.Chrome(chrome_options=chrome_options)
 
 driver.get("https://admin.zbozi.cz/loginScreen?url=%2F")
 
-print("Trying to log in as "+login+" ...")
+print("Trying to log in as "+login+" with shop_id "+shop_id)
 
 box_username = driver.find_element_by_name('username')
 box_password = driver.find_element_by_name('password')
@@ -202,6 +197,7 @@ for scrape_date in scrape_dates:
     # rename statistics_report.csv to zbozi_stats.csv
     for filename in os.listdir(save_path):
                 if filename.startswith("statistics"):
+                     print("renaming "+filename)
                      os.rename(filename,"zbozi_stats_"+ scrape_date +".csv")
     
     # rename zbozi_stats.csv to out_zbozi_stats.csv and add scrape_date column to report
