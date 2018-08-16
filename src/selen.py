@@ -75,6 +75,9 @@ if parameters.get('Date_preset')=='Yesterday':
     yesterday = date.today() - timedelta(1)
     d1=yesterday
     d2=d1
+elif parameters.get('Date_preset')=='last_3_days':
+   d1 = date.today() - timedelta(7)
+   d2 = date.today() - timedelta(3)
 elif parameters.get('Date_preset')=='last_week':
     d1 = date.today() - timedelta(7)
     d2 = date.today() - timedelta(1)
@@ -95,6 +98,15 @@ delta = d2 - d1
 for i in range(delta.days+1):
     stats_dates[i]=(d1+timedelta(i)).strftime('%Y-%m-%d')
 
+    
+date_from = stats_dates[0]
+date_to = stats_dates[len(stats_dates)-1]
+
+print("date_from " +date_from)
+print("date_to " +date_to)
+
+sys.exit(1)
+
 
 #creates /data/out/ folder
 if not os.path.isdir(save_path):
@@ -103,15 +115,15 @@ if not os.path.isdir(save_path):
 #zmeni working directory na slozku, kam se ukladaji statistiky
 os.chdir(save_path)
 
+'''
 start_date = '2018-08-01'
 end_date = '2018-08-01'
-
-
 
 dates = pd.date_range(start_date, end_date).tolist()
 scrape_dates = []
 for z in range(len(dates)):
     scrape_dates.append(dates[z].strftime("%Y-%m-%d"))
+'''
 
 print("Getting data for following dates: ")
 print(scrape_dates)
