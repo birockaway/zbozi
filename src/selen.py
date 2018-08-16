@@ -20,6 +20,10 @@ import csv
 import sys
 import urllib3
 
+import warnings
+warnings.filterwarnings("ignore", message="numpy.dtype size changed")
+warnings.filterwarnings("ignore", message="numpy.ufunc size changed")
+
 print("Python libraries loaded.")
 
 #display = Display(visible=0, size=(1024, 768))
