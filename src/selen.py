@@ -33,9 +33,9 @@ print("Current Working Directory is ... "+os.getcwd())
 print("Config taken from ... "+os.path.abspath(os.path.join(os.getcwd(), os.pardir))+'data/')
 
 # initialize KBC configuration 
-cfg = docker.Config(os.path.abspath(os.path.join(os.getcwd(), os.pardir))+'data/')
+#cfg = docker.Config(os.path.abspath(os.path.join(os.getcwd(), os.pardir))+'data/')
 # loads application parameters - user defined
-parameters = cfg.get_parameters()
+#parameters = cfg.get_parameters()
 
 ### PARAMETERS ####
 
@@ -43,11 +43,13 @@ parameters = cfg.get_parameters()
 scrape_date = str(time.strftime("%Y-%m-%d"))
 
 
-#mode
-login = parameters.get('Login')
-password = parameters.get('Password')
-shop_id = parameters.get('Shop_id')
+#login = parameters.get('Login')
+#password = parameters.get('Password')
+#shop_id = parameters.get('Shop_id')
 
+login = 'test@test'
+password = 'pass'
+shop_id = '1'
 
 print("Login is "+login)
 print("Password is "+password)
