@@ -8,7 +8,6 @@ from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import NoSuchElementException
 
 from keboola import docker # pro komunikaci s parametrama a input/output mapping
-#from pyvirtualdisplay import Display
 
 import re
 import pandas as pd
@@ -18,11 +17,8 @@ import datetime
 from datetime import date, timedelta # date input
 import csv
 import urllib3
-
 import sys  
-from importlib import reload
-reload(sys)  
-sys.setdefaultencoding('utf-8')
+
 
 import warnings
 warnings.filterwarnings("ignore", message="numpy.dtype size changed")
