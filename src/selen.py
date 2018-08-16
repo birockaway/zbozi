@@ -163,9 +163,9 @@ if driver.find_elements_by_class_name("pageStatusMessage"):
 else:
     print("Successfully logged in.")
     
-for stats_date in stats_dates:
+for stats_date in stats_dates.values():
     
-    print("Getting report for "+stats_dates+" ...")
+    print("Getting report for "+str(stats_dates)+" ...")
 
     date_format = datetime.datetime.strptime(stats_date, '%Y-%m-%d').strftime('%d.%m.%Y')
     link_web_stats = "https://admin.zbozi.cz/premiseStatistics?premiseId=" + shop_id + "&dateFrom=" + stats_date + "&dateTo=" + stats_date
