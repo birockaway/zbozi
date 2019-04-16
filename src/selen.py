@@ -166,7 +166,7 @@ for stats_date in stats_dates.values():
     driver.find_element_by_xpath("//*[@id='new-report-form']/form/div[1]/select/option[2]").click()
 
     # click on Odeslat a generuj report
-    driver.find_element_by_xpath("//*[@id='new-report-form']/form/div[4]/button").click()
+    driver.find_element_by_xpath("//*[@id='new-report-form']/form/div[6]/button").click()
 
     time.sleep(5)
     driver.get(link_web_stats)
