@@ -248,3 +248,5 @@ for filename in os.listdir(save_path):
         os.remove(filename)
         
 driver.quit()
+
+print('Job done.')
